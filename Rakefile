@@ -1,4 +1,5 @@
 require 'rake'
+require 'tmpdir'
 require 'cookbook-development/tasks'
 
 COOKBOOK_NAME = "deploy_s3"
