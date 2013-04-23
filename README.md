@@ -1,4 +1,4 @@
-Description [![Build Status](https://travis-ci.org/hipsnip/deploy_s3.png)](https://travis-ci.org/hipsnip/deploy_s3)
+Description [![Build Status](https://travis-ci.org/hipsnip-cookbooks/deploy_s3.png)](https://travis-ci.org/hipsnip-cookbooks/deploy_s3)
 ===========
 Somewhat similar to the Opscode deploy resource, but rather than hooking up to a source code repository, it downloads complete build packages from a specific Amazon S3 bucket.
 The cookbook itself doesn't do much, besides providing an "s3_deploy" resource that takes care of the above.
