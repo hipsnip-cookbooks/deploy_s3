@@ -44,6 +44,11 @@ and the resource will do the following:
 5. Symlink the package to "/home/web/latest"
 
 
+Development
+===========
+Please refer to the Readme [here](https://github.com/hipsnip-cookbooks/cookbook-development/blob/master/README.md)
+
+
 License and Author
 ==================
 
