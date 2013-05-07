@@ -32,6 +32,7 @@ Then we'd put the following in our recipe
 
 	deploy_s3 "myapp" do
 		build "v1.2"
+		bucket "mybucket"
 		action :create
 	end
 
@@ -39,7 +40,7 @@ and the resource will do the following:
 
 1. Create the folder "/home/web/myapp" if it's not already there
 2. Create the folder "/home/web/myapp/releases" if it's not already there
-3. Attempt to download the object "myapp/v1.2.tar.gz" from the "app-releases" bucket, into "/home/web/myapp/releases"
+3. Attempt to download the object "mybucket/myapp/v1.2.tar.gz" from the "app-releases" bucket, into "/home/web/myapp/releases"
 4. Unzip the package
 5. Symlink the package to "/home/web/latest"
 
