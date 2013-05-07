@@ -21,4 +21,5 @@ default_action :create
 
 attribute :application, :kind_of => String, :name_attribute => true
 attribute :build, :kind_of => String, :required => true
+attribute :bucket, :kind_of => String
 attribute :deploy_root, :kind_of => String

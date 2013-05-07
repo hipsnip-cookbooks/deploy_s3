@@ -22,6 +22,7 @@ action :create do
   log %Q(Deploying build "#{new_resource.build}" for application "#{new_resource.application}")
 
   deploy_root = new_resource.deploy_root ? new_resource.deploy_root : node['deploy_s3']['deploy_root']
+  builds_bucket = new_resource.bucket ? new_resource.bucket : node['deploy_s3']['bucket']
   app_root = ::File.join(deploy_root, new_resource.application)
   release_root = ::File.join(app_root, 'releases')
 
@@ -32,9 +33,8 @@ action :create do
   end
 
 
-  raise "You need to set the [:deploy_s3][:bucket] attribute" if node['deploy_s3']['bucket'].empty?
+  raise "You need to set at least the [:deploy_s3][:bucket] attribute if the bucket attribute of the lwrp is empty" if builds_bucket.empty?
 
-  builds_bucket = node['deploy_s3']['bucket']
   build_source = "s3://#{builds_bucket}/#{new_resource.application}/#{new_resource.build}.tar.gz"
   release_path = ::File.join(release_root, new_resource.build)
   destination_path = "#{release_path}.tar.gz"
