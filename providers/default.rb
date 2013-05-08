@@ -27,8 +27,10 @@ action :create do
   release_root = ::File.join(app_root, 'releases')
 
   directory release_root do
-    mode "0755"
+    mode new_resource.mode
     recursive true
+    user new_resource.user if new_resource.user
+    group new_resource.group if new_resource.group
     action :create
   end
 
@@ -67,6 +69,22 @@ action :create do
             Chef::Log.warn %Q(Failed to remove "#{destination_path}")
           end
         end
+
+
+        if new_resource.user && new_resource.group
+          Chef::Log.info %Q(Changing owner of "#{release_path}" to #{new_resource.user}:#{new_resource.group})
+          `chown #{new_resource.user}:#{new_resource.group} -R #{release_path}`
+        elsif new_resource.user
+          Chef::Log.info %Q(Changing owner of "#{release_path}" to #{new_resource.user})
+          `chown #{new_resource.user} -R #{release_path}`
+        elsif new_resource.group
+          Chef::Log.info %Q(Changing group of "#{release_path}" to #{new_resource.group})
+          `chgrp #{new_resource.group} -R #{release_path}`
+        end
+
+        Chef::Log.info %Q(Changing permissions on "#{release_path}" to #{new_resource.mode})
+        `chmod -R #{new_resource.mode} #{release_path}`
+
 
         Chef::Log.info %Q(Updating Symlink "#{symlink}")
         # Symlink overwriting seems to do some weird stuff, so remove it first...
