@@ -4,7 +4,7 @@ maintainer_email "adam@hipsnip.com"
 license          "Apache 2.0"
 description      "Provides a resource for downloading build packages and deploying them onto a server"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.4.0"
+version          "1.5.0"
 
 depends "hipsnip-s3cmd"
 
