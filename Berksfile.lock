@@ -1,2 +1,10 @@
-cookbook 'deploy_s3', :path => '/Users/adamb/Sites/deploy_s3'
-cookbook 'hipsnip-s3cmd', :locked_version => '1.0.0'
+{
+  "sources": {
+    "deploy_s3": {
+      "path": "."
+    },
+    "hipsnip-s3cmd": {
+      "locked_version": "1.0.0"
+    }
+  }
+}
